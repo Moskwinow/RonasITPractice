@@ -1,0 +1,4 @@
+git_import(
+  url: 'https://projects.ronasit.com/ronas-it/ios/fastlane',
+  import: ->(path) { import(path) }
+)
