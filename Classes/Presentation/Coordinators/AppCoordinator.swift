@@ -20,7 +20,37 @@ final class AppCoordinator: Coordinator<UINavigationController> {
     }
 
     func start(launchOptions: LaunchOptions?) {
-        let viewController = ViewController()
-        rootViewController.setViewControllers([viewController], animated: false)
+        showAuthModule(animated: true)
+    }
+    
+    // MARK: -  Private
+
+    private func showAuthModule(animated: Bool) {
+        let module = AuthModule()
+        module.output = self
+        rootViewController.setViewControllers([module.viewController], animated: animated)
+    }
+    
+    private func startMainCoordinator(animated: Bool) {
+        let coordinator = MainCoordinator(rootViewController: rootViewController)
+        coordinator.output = self
+        append(childCoordinator: coordinator)
+        coordinator.start(animated: animated)
+    }
+}
+
+// MARK: - AuthModuleOutput
+
+extension AppCoordinator: AuthModuleOutput {
+    func didSignIn(_ moduleInput: AuthModuleInput) {
+        startMainCoordinator(animated: true)
+    }
+}
+
+// MARK: - AuthModuleOutput
+extension AppCoordinator: MainCoordinatorOutput {
+    func closeMainCoordinator(_ coordinator: MainCoordinator) {
+        coordinator.rootViewController.dismiss(animated: true, completion: nil)
+        self.remove(childCoordinator: coordinator)
     }
 }

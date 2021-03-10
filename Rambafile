@@ -12,17 +12,18 @@ project_target: OnBoardingTest
 # The file path for new modules
 project_file_path: Classes/
 
-# The xcodeproj group path to new modules
+# The Xcode group path to new modules
 project_group_path: Classes/
 
 ### Dependencies settings section
-
+podfile_path: Podfile
 cartfile_path: Cartfile
 
 ### Templates
 catalogs:
 - 'git@projects.ronasit.com:ronas-it/ios/generamba-templates.git'
 templates:
-# - {name: rns_swift_service}
-
+- {name: rns_swift_mviper_di_module}
+- {name: rns_swift_coordinator}
+- {name: rns_swift_service}
 

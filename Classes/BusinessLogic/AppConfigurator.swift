@@ -6,12 +6,16 @@
 import UIKit
 import FirebaseCore
 import FirebaseCrashlytics
+import IQKeyboardManagerSwift
 
 final class AppConfigurator {
 
     static func configure(_ application: UIApplication, with launchOptions: LaunchOptions?) {
         let appVersion = "\(Bundle.main.appVersion) (\(Bundle.main.bundleVersion))"
         UserDefaults.standard.appVersion = appVersion
+        IQKeyboardManager.shared.enable = true
+        IQKeyboardManager.shared.enableAutoToolbar = false
+        IQKeyboardManager.shared.shouldResignOnTouchOutside = true
         FirebaseApp.configure()
     }
 }

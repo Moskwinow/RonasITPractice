@@ -3,7 +3,7 @@
 //  Copyright © 2021 Ronas IT. All rights reserved.
 //
 
-typealias HasServices = Any
+typealias HasServices = HasAuthService
 
 private typealias HasPersistentServices = Any
 
@@ -25,6 +25,9 @@ private final class PersistentServiceContainer: HasPersistentServices {
 // MARK: -  Regular Services
 
 final class ServiceContainer: HasServices {
+    
+   lazy var authService: AuthServiceProtocol  = AuthService()
+    
 
     /// lazy var keychainService: KeychainServiceProtocol = {
     ///     return KeychainService()
